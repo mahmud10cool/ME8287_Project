@@ -21,7 +21,6 @@ function evaluatedChrom = evaluateObjectives(parameter)
     
     %% Define the number of pole pairs
     p = 2;
-    % p = 1; 
 
     %% Rotor Dimensions 
     dimensions.rotor.dm=parameter(1);                            %[mm] 
@@ -75,7 +74,7 @@ function evaluatedChrom = evaluateObjectives(parameter)
     settings.phi = 0;    % Angle in [deg]
     settings.iHat = 5*Sc*sqrt(2);  % Peak current [A]
     settings.lowestHarmonic = 1; %Lowest Harmonic (n) for which winding factor |Kw,n| is non-zero; The max value it can take is p
-    settings.steps = 1; % Number of steps the design must be evaluated at; Keep this an even number;
+    settings.steps = 4; % Number of steps the design must be evaluated at; Keep this an even number;
     
     %% Rated torque
     P = 50; % power [kW]
@@ -104,9 +103,9 @@ function evaluatedChrom = evaluateObjectives(parameter)
     l = length; % axial length from evaluateDesign
     Vrs = pi*(rsi - dimensions.delta - dimensions.rotor.dm)^2*l/1e9; % rotor steel volume [m^3]
     
-    Vss = (pi*(dimensions.outerRadius-rsi)^2-Q*Su)*l/1e9; % stator steel volume [m^3]
+    Vss = 1e-9*(pi*(dimensions.outerRadius-rsi)^2-Q*Su)*l; % stator steel volume [m^3]
     
-    Vm = pi*dimensions.rotor.dm^2*l/1e9; % magnet volume [m^3]
+    Vm = 1e-9*(0.5*alpha_m*(2*(rsi - dimensions.delta)*dimensions.rotor.dm - dimensions.rotor.dm^2)*l); % magnet volume [m^3]
     
     r_slot = dimensions.outerRadius - (dimensions.stator.dsy+dimensions.stator.dst/2); % slot radius [mm]
     tau_u = alpha_c * r_slot; % [mm]
@@ -127,7 +126,7 @@ function evaluatedChrom = evaluateObjectives(parameter)
     
     % The algorithm always minimizes the objectives. 
       
-    %% Return the volume and LSA.
+    %% 
     evaluatedChrom = [O_1, O_2, O_3];
 
 end

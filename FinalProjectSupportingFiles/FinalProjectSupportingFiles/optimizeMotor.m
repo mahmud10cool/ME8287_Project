@@ -7,12 +7,12 @@ numVariables = 6; % Number of free variables
 
 % creat first generation close to the analytic design
 % variables: [dm, delta, dsy, dst, wst, ast] 
-boundsLo = [4.2,1.9,48.9,49.1,21.3,23]; % Lower bounds [mm,mm,mm,mm,mm,deg]
-boundsHi = [4.4,2.1,49.99,51.1,23.3,25];% Upper Bounds [mm,mm,mm,mm,mm,deg]
+% boundsLo = [4.2,1.9,48.9,49.1,21.3,23]; % Lower bounds [mm,mm,mm,mm,mm,deg]
+% boundsHi = [4.4,2.1,49.99,51.1,23.3,25];% Upper Bounds [mm,mm,mm,mm,mm,deg]
 
 % % variables: [dm, delta, dsy, dst, wst, ast] 
-% boundsLo = [0.25, 1, 5,5,5,1.75]; % Lower bounds [mm,mm,mm,mm,mm,deg]
-% boundsHi = [5,5,50,100,100,27];% Upper Bounds [mm,mm,mm,mm,mm,deg]
+boundsLo = [0.25, 1, 5,5,5,1.75]; % Lower bounds [mm,mm,mm,mm,mm,deg]
+boundsHi = [5,5,50,100,100,27];% Upper Bounds [mm,mm,mm,mm,mm,deg]
 
 %% Define the constraint/s
 A =[]; % Linear inequality constraints (We are not using it for this problem)
