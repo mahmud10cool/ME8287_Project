@@ -11,8 +11,8 @@ numVariables = 6; % Number of free variables
 % boundsHi = [4.4,2.1,49.99,51.1,23.3,25];% Upper Bounds [mm,mm,mm,mm,mm,deg]
 
 % % variables: [dm, delta, dsy, dst, wst, ast] 
-boundsLo = [0.25, 1, 5,5,5,1.75]; % Lower bounds [mm,mm,mm,mm,mm,deg]
-boundsHi = [5,5,50,100,100,27];% Upper Bounds [mm,mm,mm,mm,mm,deg]
+boundsLo = [0.25, 1, 5,5,5,1.8]; % Lower bounds [mm,mm,mm,mm,mm,deg]
+boundsHi = [5,5,50,100,100,28];% Upper Bounds [mm,mm,mm,mm,mm,deg]
 
 %% Define the constraint/s
 A =[]; % Linear inequality constraints (We are not using it for this problem)
@@ -26,8 +26,8 @@ evalObjectives = @evaluateObjectives;% This will be the MATLAB function that eva
 constraint = @evaluateConstraints;% This will be the MATLAB function that evaluates constraints
 
 %% Set the optimization options
-generations = 6; % Set the number of generations
-population = 100; % Set the population size (This is the number of individuals per generation)
+generations = 50; % Set the number of generations
+population = 50; % Set the population size (This is the number of individuals per generation)
 % options = optimoptions(@gamultiobj,'PlotFcn',@gaplotpareto, 'MaxGenerations',generations, 'PopulationSize',...
 %                        population,'UseParallel',true);
 
@@ -41,8 +41,8 @@ if isfile('finalPop.mat')
     load('finalPop.mat', 'savedPopulation');
     initialPopulation = savedPopulation;
 else
-    disp('Starting from a new random population...');
-    initialPopulation = [];
+    disp('Starting from the analytic design');
+    initialPopulation = [3.8676, 1.5, 62.1125, 22.3875, 26.7281, 25.0000];
 end
 
 options = optimoptions(@gamultiobj, ...
