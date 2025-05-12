@@ -94,8 +94,8 @@ function evaluatedChrom = evaluateObjectives(parameter)
     else
         [designEval, length] = evaluateDesign(materials, dimensions, p, winding, settings, ratedTorque);
         fprintf('The avg. torque is %1.3f [Nm]; the expected value is 47.7465[Nm]\n', designEval.torque.average);
-        fprintf('The Efficiency is %1.3f percent; the expected value is 90.00 percent\n', designEval.efficiency);
-        fprintf('The torque ripple is %1.3f; the expected value is 0.50\n', designEval.torque.ripple);
+        fprintf('The Efficiency is %1.3f percent; the minimum value is 90.00 percent\n', designEval.efficiency);
+        fprintf('The torque ripple is %1.3f; the maximum value is 0.50\n', designEval.torque.ripple);
     end
     
        
