@@ -63,7 +63,7 @@ function evaluatedChrom = evaluateObjectives(parameter)
     Su = alpha_c*(dimensions.outerRadius-dimensions.stator.dsy)*dimensions.stator.dst - dimensions.stator.wst*dimensions.stator.dst - 0.5*alpha_c*dimensions.stator.dst^2;
     
     % Number of turns
-    zQ = round(Kcu/Sc/2*Su);                    
+    zQ = floor((Su*kcu)/(Sc*2));                 
     
     % Winding
     winding.layers = 2; 
@@ -84,8 +84,8 @@ function evaluatedChrom = evaluateObjectives(parameter)
     P = 50e3; % [W]
     ratedTorque = P/(settings.RPM*(2*pi)/60);
     
-    %% Analysis
-    [C, Ceq] = evaluateConstraints(parameter); % check if constaints are violated
+    %% Check and Analysis
+    [C, Ceq] = evaluateConstraints(parameter); 
     
     if C(1) > 0 || C(2) > 0 || C(3) > 0 || C(4) > 0 || Ceq ~= 0
         length = inf;
@@ -124,10 +124,10 @@ function evaluatedChrom = evaluateObjectives(parameter)
     Vcu = pi*dw^2/4*zQ*Q*l_c; 
     
     % Active material cost [$]
-    AMC = (Vrs+Vss)*steelCost + Vcu*cuCost + Vm*magnetCost;
+    Total_Cost = (Vrs+Vss)*steelCost + Vcu*cuCost + Vm*magnetCost;
     
     % O_1: Active material cost [$].
-    O_1 = AMC; 
+    O_1 = Total_Cost; 
         
     % O_2: Efficiency [%]
     O_2 = -designEval.efficiency; 

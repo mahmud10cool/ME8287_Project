@@ -31,7 +31,7 @@ if isfile('population1.mat')
     initialPopulation = savedPopulation;
 else
     disp('Starting from the analytic design from Q5:');
-    initialPopulation = [3.8676, 1.5, 62.1125, 22.3875, 26.7281, 25.0000];
+    initialPopulation = [3.8676, 1.5000, 45.5310, 38.9690, 26.7281, 25.0000];
 end
 
 options = optimoptions(@gamultiobj, ...
