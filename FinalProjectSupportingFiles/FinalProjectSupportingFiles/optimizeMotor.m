@@ -25,9 +25,9 @@ generations = 5; % Set the number of generations
 population = 50; % Set the population size (This is the number of individuals per generation)
 
 %% Run the optimization
-if isfile('finalPop.mat')
-    disp('Resuming from saved population...');
-    load('finalPop.mat', 'savedPopulation');
+if isfile('population1.mat')
+    disp('Starting from the saved population');
+    load('population1.mat', 'savedPopulation');
     initialPopulation = savedPopulation;
 else
     disp('Starting from the analytic design from Q5:');
@@ -48,12 +48,12 @@ options = optimoptions(@gamultiobj, ...
 
 % Final population to resume later
 savedPopulation = population;
-save('finalPop.mat', 'savedPopulation');
+save('population2.mat', 'savedPopulation');
 
 % Scores
-save('scores_gen1.mat', 'scores');
+save('scores_gen2.mat', 'scores');
 
 % Pareto front
-save('pareto_front_gen1.mat', 'Fval');
+save('par_front_gen2.mat', 'Fval');
 
 

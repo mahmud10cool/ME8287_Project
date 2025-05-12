@@ -86,9 +86,6 @@ function evaluatedChrom = evaluateObjectives(parameter)
     
     %% Analysis
     [C, Ceq] = evaluateConstraints(parameter); % check if constaints are violated
-    disp('constraints')
-    disp(C)
-    disp(Ceq)
     
     if C(1) > 0 || C(2) > 0 || C(3) > 0 || C(4) > 0 || Ceq ~= 0
         length = inf;
